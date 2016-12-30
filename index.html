@@ -1,0 +1,140 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Superpedestrian Status</title>
+    <link rel="stylesheet" href="bower_components/furtive/css/furtive.min.css" />
+    <link
+      href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.29.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/index.css" />
+    <script
+      src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.29.0/mapbox-gl.js'
+    >
+    </script>   
+    <script src="./bower_components/jquery/dist/jquery.js"></script>
+    <script src="./bower_components/mustache.js/mustache.js"></script>
+  </head>
+  <body>
+    <div class="pad txt--center">
+      <h1>Superpedestrian</h1>
+    </div>
+    <div class="grd p0 m0">
+      <div class="grd-row">
+        <div class="full-width">
+          <div id="overall"></div>
+        </div>
+      </div>
+      <div class="grd-row pad">
+        <h2>90 Day Wheel Usage</h2>
+        <div id="map" style="height: 300px; width: 100%;"></div>
+      </div>
+      <div class="grd-row pad">
+        <div class="full-width" id="twitter-container">
+          <h2>Latest Updates</h2>
+          <div id="twitter">
+          </div>
+        </div>
+      </div>
+      <div class="grd-row pad">
+        <div class="full-width">
+          <h2>
+            Statistics
+          </h2>
+          <div id="stats">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="web">
+    </div>
+  </body>
+  <script type="text/javascript" src="js/index.js"></script>
+  <script id="overall-template" type="x-tmpl-mustache">
+    <div class="p2 {{ status }}">
+      <h2 class="m0 p0 fnt--white">Overall Status</h2>
+      <p>
+        {{ statusMsg }}
+      </p>
+      {{# appIssues }}
+      <p>
+        Problematic Apps:
+        <ul>
+          {{# apps }}
+          <li>{{ . }}</li>
+          {{/ apps }}
+        </ul>
+      </p>
+      {{/ appIssues }}
+    </div>
+  </script>
+  <script id="twitter-template" type="x-tmpl-mustache">
+    <ul>
+      {{# tweets }}
+      <li>
+        <time>{{ date }}</time>
+        <p>
+          {{ text }}
+        </p>
+      </li>
+      {{/ tweets }}
+    </ul>
+  </script>  
+  <script id="stats-template" type="x-tmpl-mustache">
+    <ul>
+      <li class="txt--center">
+        <div class="stat-wheel">
+          <div class="stat-wheel-inner">
+            <div class="stat">{{ active_wheels.num_wheels }}</div>
+            <div class="stat-unit">Wheels</div>
+          </div>
+        </div>
+        <p>Active in the last 90 days.</p>
+      </li>
+      <li class="txt--center">
+        <div class="stat-wheel">
+          <div class="stat-wheel-inner">
+            <div class="stat">{{ all_wheels.num_wheels }}</div>
+            <div class="stat-unit">Wheels</div>
+          </div>
+        </div>
+        <p>Made since the beginning.</p>
+      </li>
+      <li class="txt--center">
+        <div class="stat-wheel">
+          <div class="stat-wheel-inner">
+            <div class="stat-large">{{# twoPlaces }}{{ active_wheels.km_travelled }}{{/ twoPlaces }}</div>
+            <div class="stat-unit">Kilometers</div>
+          </div>
+        </div>
+        <p>Travelled in the last 90 days.</p>
+      </li>
+      <li class="txt--center">
+        <div class="stat-wheel">
+          <div class="stat-wheel-inner">
+            <div class="stat-large">{{# twoPlaces }}{{ all_wheels.total_distance_km }}{{/ twoPlaces }}</div>
+            <div class="stat-unit">Kilometers</div>
+          </div>
+        </div>
+        <p>Ever travelled by Wheels.</p>
+      </li>
+    </ul>
+  </script>
+  <script id="web-template" type="x-tmpl-mustache">
+    <div class="grd-row" class="dummy">
+      {{# apps }}
+      {{{ row }}}
+      <div class="p2 m1 status grd-row-col-3-6 {{ health_status}}">
+        <h2><a href="{{ url }}">{{ name }}</a></h2>
+        <ul>
+          <li>Response Time: {{ response_time }} ms</li>
+          <li>Throughput: {{ throughput }}/minute</li>
+          <li>Error Rate: {{ error_rate }}%</li>
+        </ul>
+      </div>
+      {{/ apps }}
+    </div>
+  </script>
+</html>
