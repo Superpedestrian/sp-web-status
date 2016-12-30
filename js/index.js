@@ -3,6 +3,10 @@ function formatDate(date) {
   return dateObj.toLocaleDateString() + ' ' + dateObj.toLocaleTimeString();
 };
 
+function metersToPixelsAtMaxZoom(meters, latitude) {
+  return meters / 0.1 / Math.cos(latitude * Math.PI / 180)
+}
+
 function makeMap(geojson) {
   mapboxgl.accessToken = 'pk.eyJ1Ijoic3BtYXR0IiwiYSI6Ik5HV3U0MjgifQ.OyvIfF0FxtO0LCNX2CqFpg';
   var map = new mapboxgl.Map({
@@ -13,18 +17,30 @@ function makeMap(geojson) {
   });
   map.on('load', function() {
     $.each(geojson.features, function(index, feature) {
-      map.addSource('block' + index, {
+      map.addSource('circle' + index, {
         "type": 'geojson',
         "data": feature
       });
       map.addLayer({
-        "id": 'box' + index,
-        "type": 'fill',
-        "source": 'block' + index,
-        'filter': ['==', '$type', 'Polygon'],
+        "id": 'circle' + index,
+        "type": 'circle',
+        "source": 'circle' + index,
         'paint': {
-          'fill-color': feature.properties.fill,
-          'fill-opacity': 0.4
+          'circle-radius': {
+            stops: [
+              [0, 0],
+              [
+                20,
+                metersToPixelsAtMaxZoom(
+                  feature.properties.radius_meters,
+                  feature.geometry.coordinates[1]
+                )
+              ]
+            ],
+            base: 2
+          },
+          'circle-opacity': feature.properties['fill-opacity'],
+          'circle-color': feature.properties.fill
         }
       });
     });
