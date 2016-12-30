@@ -90,6 +90,7 @@ function renderTemplates() {
     renderTemplate('#web-template', '#web', data);
 
     // Overall status
+    data.updated = formatDate(data.timestamp);
     var status = 'green';
     var appIssues = [];
     $.each(data.apps, function(index, value) {

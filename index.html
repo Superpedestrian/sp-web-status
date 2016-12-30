@@ -55,7 +55,10 @@
   <script id="overall-template" type="x-tmpl-mustache">
     <div class="p2 {{ status }}">
       <h2 class="m0 p0 fnt--white">Overall Status</h2>
-      <p>
+      <div class="raised2 flt--right">
+        Last Updated: <time>{{ updated }}</time>
+      </div>
+      <p class="p1">
         {{ statusMsg }}
       </p>
       {{# appIssues }}
