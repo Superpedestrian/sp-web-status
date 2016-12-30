@@ -1,0 +1,23 @@
+{
+  "name": "sp-web-status",
+  "homepage": "https://github.com/Superpedestrian/sp-web-status",
+  "authors": [
+    "dev@superpedestrian.com"
+  ],
+  "description": "Status site for Superpedestrian",
+  "main": "index.html",
+  "license": "GPL 3.0",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.1.1",
+    "mustache.js": "mustache#^2.3.0",
+    "furtive": "^2.3.0"
+  }
+}
