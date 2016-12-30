@@ -98,6 +98,10 @@ div .dummy {
     padding: 0;
 }
 
+div .raised2 {
+    margin-top: -2rem;
+}
+
 div .full-width {
     width: 100%;
 }
