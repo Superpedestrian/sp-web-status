@@ -111,7 +111,7 @@ div .green {
     color: #fff;
 }
 
-div .yellow {
+div .orange {
     background-color: #f39c12;
     color: #fff;
 }
@@ -121,10 +121,10 @@ div .red {
     color: #fff;
 }
 
-.yellow a:hover,
-.yellow a:focus,
+.orange a:hover,
+.orange a:focus,
 .green a:hover,
-.yellow a:focus,
+.orange a:focus,
 .red a:hover,
 .red a:focus {
   color: #fff;
@@ -132,7 +132,7 @@ div .red {
 }
 
 .green a,
-.yellow a,
+.orange a,
 .red a {
     color: #fff;
     text-decoration: none;

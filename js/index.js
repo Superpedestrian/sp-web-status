@@ -96,9 +96,9 @@ function renderTemplates() {
     $.each(data.apps, function(index, value) {
       if(value.health_status != 'green') {
         appIssues.push(value.name);
-        if(value.health_status == 'yellow') {
+        if(value.health_status == 'orange') {
           if(status != 'red') {
-            status = 'yellow';
+            status = 'orange';
           }
         } else {
           status = 'red';
@@ -108,7 +108,7 @@ function renderTemplates() {
     if(status == 'green') {
       data.statusMsg = 'We’re doing great! If there is a problem, we don’t know about it yet.';
 
-    } else if(status == 'yellow') {
+    } else if(status == 'orange') {
       data.statusMsg = 'We’re in the middle of a service disruption and we’ll be back up and running in no time!';
     } else {
       data.statusMsg = 'Uh-oh, looks like we’re in the middle of a serious problem. My Spidey-sense suggests its an all nighter for our software engineers.'
