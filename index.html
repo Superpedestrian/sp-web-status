@@ -38,15 +38,6 @@
           </div>
         </div>
       </div>
-      <div class="grd-row pad">
-        <div class="full-width">
-          <h2>
-            Statistics
-          </h2>
-          <div id="stats">
-          </div>
-        </div>
-      </div>
     </div>
     <div id="web">
     </div>
@@ -85,46 +76,6 @@
       {{/ tweets }}
     </ul>
   </script>  
-  <script id="stats-template" type="x-tmpl-mustache">
-    <ul>
-      <li class="txt--center">
-        <div class="stat-wheel">
-          <div class="stat-wheel-inner">
-            <div class="stat">{{ active_wheels.num_wheels }}</div>
-            <div class="stat-unit">Wheels</div>
-          </div>
-        </div>
-        <p>Active in the last 90 days.</p>
-      </li>
-      <li class="txt--center">
-        <div class="stat-wheel">
-          <div class="stat-wheel-inner">
-            <div class="stat">{{ all_wheels.num_wheels }}</div>
-            <div class="stat-unit">Wheels</div>
-          </div>
-        </div>
-        <p>Made since the beginning.</p>
-      </li>
-      <li class="txt--center">
-        <div class="stat-wheel">
-          <div class="stat-wheel-inner">
-            <div class="stat-large">{{# twoPlaces }}{{ active_wheels.km_travelled }}{{/ twoPlaces }}</div>
-            <div class="stat-unit">Kilometers</div>
-          </div>
-        </div>
-        <p>Travelled in the last 90 days.</p>
-      </li>
-      <li class="txt--center">
-        <div class="stat-wheel">
-          <div class="stat-wheel-inner">
-            <div class="stat-large">{{# twoPlaces }}{{ all_wheels.total_distance_km }}{{/ twoPlaces }}</div>
-            <div class="stat-unit">Kilometers</div>
-          </div>
-        </div>
-        <p>Ever travelled by Wheels.</p>
-      </li>
-    </ul>
-  </script>
   <script id="web-template" type="x-tmpl-mustache">
     <div class="grd-row" class="dummy">
       {{# apps }}

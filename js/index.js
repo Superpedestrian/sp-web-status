@@ -70,14 +70,6 @@ function renderTemplates() {
     });
     renderTemplate('#twitter-template', '#twitter', data);
 
-    // Stats
-    data.twoPlaces = function() {
-      return function(text, render) {
-        return parseFloat(render(text)).toFixed(2);
-      };
-    };
-    renderTemplate('#stats-template', '#stats', data);
-
     // App statuses
     var cellsPerRow = 2;
     $.each(data.apps, function(index, value) {
